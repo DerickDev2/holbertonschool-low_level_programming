@@ -1,36 +1,28 @@
-#include <stdio.h>
+#include "main.h"
 
 /**
- *  main - This program prints the number 1-100, followed by a newline.
- *  But for multiples of 3, prints 'Fizz' instead of the number,
- *  for multiples of 5, prints 'Buzz', nd for multiples of both,
- *  prints 'Fizzbuzz'
- *  Return: Always 0 (Success)
+ * print_triangle - This function prints a triangle
+ * followed by a newline
+ * @size: The size of the triangle
  */
 
-int main (void)
+void print_triangle(int size)
 {
 
-	int i;
+	int row, column, space, pound;
 
-	for (i = 1; i <= 100; i++)
+	if (size <= 0)
+		_putchar('\n');
+
+	for (row = 0; row < size; row++)
 	{
-		for (i = 1; i <= 100; i++)
-		{
-			if (i % 15 == 0)
-				printf("FizzBuzz");
-			else if (i % 3 == 0)
-				printf("Fizz");
-			else if (i % 5 == 0)
-				printf("Buzz");
-			else
-				printf("%i", i);
+		column = size - 1 - row;
 
-			if (i != 100)
-				printf(" ");
+		for (space = column; space > 0; space--)
+			_putchar(' ');
+		for (pound = size - column; pound > 0; pound--)
+			_putchar(35);
 
-		}
-
-		printf("\n");
-		return (0);
+		_putchar('\n');
 	}
+}
