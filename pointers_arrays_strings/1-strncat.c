@@ -7,7 +7,7 @@
  * @dest: string copied
  * Return: a pointer to the resuting string @dest
  */
-char *_strncat(chat *dest, char *src, int n)
+char *_strncat(char *dest, char *src, int n)
 {
 	int x, y;
 
