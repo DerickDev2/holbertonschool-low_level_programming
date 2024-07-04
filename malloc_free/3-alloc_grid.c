@@ -1,38 +1,77 @@
+#include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
 
-/**
- * alloc_grid - Allocates a 2D array of integers.
- * @width: The width of the grid.
- * @height: The height of the grid.
+/** 
+ * alloc_grid - returns a pointer to a 2 dimensional array of integers.
+ * @width: width of the array.
+ * @height: height of the array.
  *
- * Return: A pointer to the created 2D array, or NULL on failure 
- *         or if width/height is <= 0.
+ * Return: pointer of an array of integers
  */
 int **alloc_grid(int width, int height)
 {
-    int **grid;
+    int **gridout;
     int i, j;
 
-    if (width <= 0 || height <= 0)
+    if (width < 1 || height < 1)
         return (NULL);
 
-    grid = (int **)malloc(height * sizeof(int *));
-    if (grid == NULL)
+    gridout = malloc(height * sizeof(int *));
+    if (gridout == NULL)
+    {
+        free(gridout);
         return (NULL);
+    }
 
     for (i = 0; i < height; i++)
     {
-        grid[i] = (int *)malloc(width * sizeof(int));
-        if (grid[i] == NULL)
+        gridout[i] = malloc(width * sizeof(int));
+        if (gridout[i] == NULL)
         {
-            for (j = 0; j < i; j++)
-                free(grid[j]);
-            free(grid);
+            for (i--; i >= 0; i--)
+                free(gridout[i]);
+            free(gridout);
             return (NULL);
         }
-        for (j = 0; j < width; j++)
-            grid[i][j] = 0;
     }
 
-    return (grid);
+    for (i = 0; i < height; i++)
+        for (j = 0; j < width; j++)
+            gridout[i][j] = 0;
+
+    return (gridout);
+}
+
+int main(void)
+{
+    int width = 3;
+    int height = 3;
+    int **grid;
+    int i, j;
+    
+    grid = alloc_grid(width, height);
+
+    if (grid == NULL)
+    {
+        return (1);
+    }
+
+    for (i = 0; i < height; i++)
+    {
+        for (j = 0; j < width; j++)
+        {
+            printf("%d ", grid[i][j]);
+        }
+        printf("\n");
+    }
+
+    // Free allocated memory
+    for (i = 0; i < height; i++)
+    {
+        free(grid[i]);
+    }
+    free(grid);
+
+    return (0);
 }
