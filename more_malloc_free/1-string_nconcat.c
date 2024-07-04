@@ -2,14 +2,14 @@
 #include <stdlib.h>
 
 /**
- * string_nconcat - concatenates two strings.
+ * string_nconcat - concatenates two strings
  *
  * @s1: string source
  * @s2: string destination
  * @n: number of bytes
  *
  * Return: NULL if function fails
- * Pointer to newly allocated space in memory
+ * pointer to newly allocated space in memory
  *
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
@@ -35,7 +35,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	}
 	for (y = 0; y < n; ++y, ++x)
 	{
-		p[x] = s1[y];
+		p[x] = s2[y];
 	}
 	p[x] = '\0';
 	return (p);
