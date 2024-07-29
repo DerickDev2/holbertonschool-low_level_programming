@@ -11,13 +11,13 @@ size_t list_len(const list_t *h)
 	/*Variable*/
 	size_t count = 0;
 
-	while (h != NULL) /*check if str !NULL*/
+	while (h != NULL)
 	{
 		if (h->str != NULL)
 		{
-			count++; /*sum 1 to count*/
+			count++;
 		}
-		h = h->next; /*move tp next argument*/
+		h = h->next;
 	}
 	return (count);
 }
